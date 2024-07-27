@@ -1,41 +1,57 @@
-
-let mesaDeLuz = 5500
-let MesaDeLuz2 = 10500
-let MesaDeLuz3 = 15000
+// Variables globales
+let mesaDeLuz = { nombre: "Mesa de luz pequeña", precio: 5000 }
+let MesaDeLuz2 = { nombre: "Mesa de luz mediana", precio: 8000 }
+let MesaDeLuz3 = { nombre: "Mesa de luz grande", precio: 10000 }
+let preciofinal = 0
+let nombreCliente
+let condicion = 1
+let textoListado = ""
+let variableultpos = 0
 let contmesaDeLuz = 0
 let contmesaDeLuz2 = 0
 let contmesaDeLuz3 = 0
-let preciofinal = 0
-let nombreCliente
-let saldo = 0
-let condicion = 1
+let persona1 = { nombre: "", apellido: "", saldo: 0, saludar: function() { alert("Hola " + this.nombre + " " + this.apellido) } }
+let arrayProductos = [mesaDeLuz, MesaDeLuz2, MesaDeLuz3]
+
+// Función para agregar productos al precio final
 function agregarProducto(producto) {
-    preciofinal = preciofinal + producto
+    preciofinal = preciofinal + producto.precio
 }
 
+// Función principal del flujo
 function flujo() {
-    nombreCliente = prompt("Hola ingresa tu nombre")
-    alert("Hola " + nombreCliente)
-    saldo = prompt("Ingresa tu saldo")
-    saldo = parseFloat(saldo)
-    if (saldo >= 0) {
+    persona1.nombre = prompt("Hola, ingresa tu nombre")
+    persona1.apellido = prompt("Ingresa tu apellido")
+    persona1.saludar()
+    persona1.saldo = parseFloat(prompt("Ingresa tu saldo"))
+    if (persona1.saldo >= 0) {
         carritoCompra()
-    }
-    else {
+    } else {
         alert("No posee saldo")
     }
-
 }
 
+// Función para listar productos
+function listadoProductos() {
+    textoListado = ""
+    for (let i = 0; i < arrayProductos.length; i++) {
+        let cont = i + 1
+        textoListado += cont + ". " + arrayProductos[i].nombre + " - $" + arrayProductos[i].precio + "\n"
+    }
+    return textoListado
+}
+
+// Función para manejar el carrito de compras
 function carritoCompra() {
-    opcion = prompt("Elija el producto a agregar al carrito: \n Saldo disponible: " + saldo + " \n 1. Mesa de luz pequeña - 5500$ \n 2. Mesa de Luz mediana - 10500$ \n 3. Mesa de Luz grande - 15000$ \n 4. Finalizar compra \n Subtotal: " + preciofinal)
-    while (condicion == 1)
-    {
+    variableultpos = arrayProductos.length + 1
+    let variablestring = variableultpos.toString()
+    opcion = prompt("Elija el producto a agregar al carrito: \n Saldo disponible: $" + persona1.saldo + "\n" + listadoProductos() + variableultpos + ". Finalizar compra \n Subtotal: $" + preciofinal)
+    while (condicion == 1) {
         switch (opcion) {
             case "1":
-                if (saldo >= mesaDeLuz) {
-                    preciofinal = preciofinal + mesaDeLuz
-                    saldo = saldo - mesaDeLuz
+                if (persona1.saldo >= mesaDeLuz.precio) {
+                    preciofinal += mesaDeLuz.precio
+                    persona1.saldo -= mesaDeLuz.precio
                     contmesaDeLuz++
                 } else {
                     alert("Saldo insuficiente")
@@ -43,9 +59,9 @@ function carritoCompra() {
                 carritoCompra()
                 break
             case "2":
-                if (saldo >= MesaDeLuz2) {
-                    preciofinal = preciofinal + MesaDeLuz2
-                    saldo = saldo - MesaDeLuz2
+                if (persona1.saldo >= MesaDeLuz2.precio) {
+                    preciofinal += MesaDeLuz2.precio
+                    persona1.saldo -= MesaDeLuz2.precio
                     contmesaDeLuz2++
                 } else {
                     alert("Saldo insuficiente")
@@ -53,27 +69,26 @@ function carritoCompra() {
                 carritoCompra()
                 break
             case "3":
-                if (saldo >= MesaDeLuz3) {
-                    preciofinal = preciofinal + MesaDeLuz3
-                    saldo = saldo - MesaDeLuz3
+                if (persona1.saldo >= MesaDeLuz3.precio) {
+                    preciofinal += MesaDeLuz3.precio
+                    persona1.saldo -= MesaDeLuz3.precio
                     contmesaDeLuz3++
                 } else {
                     alert("Saldo insuficiente")
                 }
                 carritoCompra()
                 break
-            case "4":
+            case variablestring:
                 condicion = 2
-                alert("Carrito de compras \n 1. Mesa de luz pequeña: " + contmesaDeLuz + "\n 2. Mesa de Luz mediana: " + contmesaDeLuz2 + "\n 3. Mesa de Luz Grande: " + contmesaDeLuz3 + "\nTotal: " + preciofinal)
-                alert("Gracias por su compra :)")
+                alert("Carrito de compras \n 1. Mesa de luz pequeña: " + contmesaDeLuz + "\n 2. Mesa de Luz mediana: " + contmesaDeLuz2 + "\n 3. Mesa de Luz Grande: " + contmesaDeLuz3 + "\nTotal: $" + preciofinal)
+                alert("Gracias por su compra, vuelva pronto")
                 break
             default:
-                alert("Por favor ingrese una opcion valida")
+                alert("Por favor ingrese una opción válida")
                 carritoCompra()
                 break
         }
     }
-    
 }
 
 flujo()
