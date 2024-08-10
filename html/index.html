@@ -3,12 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Micarpinteria</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/estilos.css">
+    <title>Raices Riojanas</title>
 </head>
 <body>
-    
-    <script src="../java script/script.js"></script>
-    <script src="../java script/mueble.js"></script>
-    <script src="../java script/persona.js"></script> 
+    <div class="container" id="contenedorPrincipal">
+        <h1 class="text-center">Raices Riojanas</h1>
+        <h2 class="text-center">Imagina tu estilo, nosotros lo hacemos</h2>
+        <div class="mb-3">
+            <label for="formGroupExampleInput" class="form-label">Ingresa tu nombre</label>
+            <input type="text" class="form-control nombre" id="formGroupExampleInput" placeholder="Ej: Carlos">
+        </div>
+        <div class="mb-3">
+            <label for="formGroupExampleInputApellido" class="form-label">Ingresa tu apellido</label>
+            <input type="text" class="form-control apellido" id="formGroupExampleInputApellido" placeholder="Ej: Gomez">
+        </div>
+        <div class="mb-3">
+            <label for="formGroupExampleInput2saldo" class="form-label">Ingresa tu saldo</label>
+            <input type="text" class="form-control saldo" id="formGroupExampleInput2saldo" placeholder="$">
+        </div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-primary me-md-2" type="button" id="btnContinuar">Continuar</button>
+        </div>
+    </div>
+    <script src="../javascript/app.js"></script>
+    <script src="../javascript/itemcarrito.js"></script>
+    <script src="../javascript/persona.js"></script>
+    <script src="../javascript/productos.js"></script>
 </body>
 </html>
